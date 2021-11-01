@@ -1,0 +1,65 @@
+{
+  "name": "rollbar-test",
+  "version": "1.0.0",
+  "main": "handler.js",
+  "scripts": {
+    "clean": "rm -Rf .build",
+    "deploy": "serverless deploy",
+    "dev": "serverless offline",
+    "eslint": "eslint --ext=js,ts,tsx",
+    "format": "yarn eslint src --fix && yarn prettier",
+    "prettier": "prettier --config .prettierrc.js --write 'src/**/*.ts'"
+  },
+  "author": "Dave Perrett",
+  "license": "UNLICENSED",
+  "lint-staged": {
+    "*.{js,ts,.d.ts}": [
+      "yarn eslint --fix",
+      "yarn prettier"
+    ],
+    "*.{md,json,css}": [
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    }
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.84",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.4",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.2",
+    "husky": "^7.0.4",
+    "jest": "^26.6.3",
+    "lint-staged": "^11.2.4",
+    "prettier": "^2.4.1",
+    "serverless": "^2.64.1",
+    "serverless-domain-manager": "^5.1.5",
+    "serverless-jest-plugin": "^0.4.0",
+    "serverless-offline": "^8.2.0",
+    "serverless-plugin-typescript": "^2.1.0",
+    "ts-jest": "^26.5.6",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "@typeform/api-client": "^1.7.0",
+    "aws-sdk": "^2.1013.0",
+    "axios": "^0.23.0",
+    "bluebird": "^3.7.2",
+    "lodash": "^4.17.21",
+    "mustache": "^4.2.0",
+    "nodemailer": "^6.7.0",
+    "pdfkit": "^0.12.3",
+    "rollbar": "^2.24.0",
+    "svg-to-pdfkit": "^0.1.8",
+    "tmp": "^0.2.1"
+  }
+}

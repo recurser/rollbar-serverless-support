@@ -1,0 +1,37 @@
+app: rollbar-test
+
+service: rollbar-test
+
+configValidationMode:                error
+unresolvedVariablesNotificationMode: error
+useDotenv:                           true
+variablesResolutionMode:             20210326
+
+provider:
+  name:    aws
+  region:  ap-northeast-1
+  runtime: nodejs14.x
+  profile: rollbar-test
+  lambdaHashingVersion: 20201221
+  environment:
+    ROLLBAR_ACCESS_TOKEN: ${env:ROLLBAR_ACCESS_TOKEN}
+    ROLLBAR_ENV:          ${env:ROLLBAR_ENV}
+
+functions:
+
+  rollbarTest:
+    handler: src/handlers/rollbarTest.handler
+    events:
+      - http:
+          path:   rollbar-test
+          method: get
+
+package:
+  individually: true
+  patterns:
+    - src/**
+
+plugins:
+  - serverless-jest-plugin
+  - serverless-offline
+  - serverless-plugin-typescript
